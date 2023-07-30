@@ -1,9 +1,5 @@
-name: Build wl-clipboard
+name: IWYU
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -18,7 +14,7 @@ jobs:
         with: 
           compiler: clang-15
       - name: Install dependencies
-        run: sudo apt install -y libwayland-dev wayland-protocols xdg-utils mime-support
+        run: sudo apt update && sudo apt install -y libwayland-dev wayland-protocols xdg-utils mime-support iwyu
       - name: Setup python
         uses: actions/setup-python@v4
       - name: Build project
@@ -27,3 +23,5 @@ jobs:
         uses: BSFishy/meson-build@v1.0.3
         with:
           action: build
+      - name: Run IWYU
+        run: iwyu_tool -p build
