@@ -15,7 +15,8 @@ jobs:
       - name: Install compiler
         id: cc
         uses: rlalik/setup-cpp-compiler@v1.2
-          with: clang-15
+        with: 
+          compiler: clang-15
       - name: Install dependencies
         run: sudo apt install -y libwayland-dev wayland-protocols xdg-utils mime-support
       - name: Setup python
